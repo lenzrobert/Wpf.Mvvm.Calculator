@@ -6,68 +6,109 @@
         xmlns:local="clr-namespace:Wpf.Mvvm.Calculator.View"
         xmlns:cvm ="clr-namespace:Wpf.Mvvm.Calculator.ViewModel"
         mc:Ignorable="d"
-        Title="Basic Calculator" Height="450" Width="800">
-    
+        Title="Basic Calculator" Height="300" Width="400">
+    <Window.Resources>
+        <Style
+            x:Key="CalculatorLabel"
+            TargetType="Label">
+            <Setter Property="Margin" Value="5 0 10 0" />
+        </Style>
+        <Style
+            x:Key="CalculatorTextBox"
+            TargetType="TextBox">
+            <Setter Property="Margin" Value="5 0 10 0" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="MinWidth" Value="150"/>
+        </Style>
+        <Style
+            x:Key="CalculatorButton"
+            TargetType="Button">
+            <Setter Property="Margin" Value="5 2 5 0" />
+            <Setter Property="MinWidth" Value="80" />
+        </Style>
+    </Window.Resources>
    
-       <StackPanel >
+       <StackPanel
+           Margin="20 10 20 10">
         <StackPanel.DataContext>
             <cvm:CalculatorViewModel/>
         </StackPanel.DataContext>
-        <Grid>
+        <Grid
+            Margin="20">
             <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition
+                        Width="1*"/>
+                    <ColumnDefinition
+                        Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Label
                    Grid.Row="0"
                    Grid.Column="0"
+                   Style="{StaticResource CalculatorLabel}"
                    Content="Number One"/>
                 <TextBox
                     x:Name="TxtNumb1"
                     Grid.Row="0"
                     Grid.Column="1"
+                    Style="{StaticResource CalculatorTextBox}"
                     Text="{Binding Numb1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label
                     Grid.Row="1"
                     Grid.Column="0"
+                    Style="{StaticResource CalculatorLabel}"
                     Content="Number Two"/>
                 <TextBox
                     x:Name="TxtNumb2"
                     Grid.Row="1"
                     Grid.Column="1"
+                    Style="{StaticResource CalculatorTextBox}"
                     Text="{Binding Numb2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label
                     Grid.Row="2"
                     Grid.Column="0"
+                    Style="{StaticResource CalculatorLabel}"
                     Content="Result"/>
                 <TextBox
                     x:Name="TxtResult"
                     Grid.Row="2"
                     Grid.Column="1"
+                    Style="{StaticResource CalculatorTextBox}"
                     Foreground="{Binding ColorForeground}"
+                    FontWeight="Bold"
                     Text="{Binding NumbResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
            </Grid>
-           <StackPanel Orientation="Horizontal">
+           <StackPanel
+               Orientation="Horizontal"
+               HorizontalAlignment="Center"
+               Margin="10">
                 <Button
                     x:Name="BtnAdd"
                     Content="Addition"
+                    Background="GreenYellow"
+                    Style="{StaticResource CalculatorButton}"
                     Command="{Binding AdditionButtonCommand}"/>
                 <Button
                     x:Name="BtnSub"
                     Content="Subtraction"
+                    Background="OrangeRed"
+                    Style="{StaticResource CalculatorButton}"
                     Command="{Binding SubtractionButtonCommand}"/>
                 <Button
                     x:Name="BtnReset"
                     Content="Reset"
+                    Style="{StaticResource CalculatorButton}"
                     Command="{Binding ResetButtonCommand}"/>
            </StackPanel>
            <TextBlock 
                x:Name="TxtErrorMessage"
+               TextWrapping="Wrap"
                Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
                Text="{Binding Error, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
        </StackPanel>
