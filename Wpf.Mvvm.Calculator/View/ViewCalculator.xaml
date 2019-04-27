@@ -4,9 +4,72 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf.Mvvm.Calculator.View"
+        xmlns:cvm ="clr-namespace:Wpf.Mvvm.Calculator.ViewModel"
         mc:Ignorable="d"
-        Title="ViewCalculator" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Basic Calculator" Height="450" Width="800">
+    
+   
+       <StackPanel >
+        <StackPanel.DataContext>
+            <cvm:CalculatorViewModel/>
+        </StackPanel.DataContext>
+        <Grid>
+            <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Content="Number One"/>
+                <TextBox
+                    x:Name="TxtNumb1"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="{Binding Numb1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Content="Number Two"/>
+                <TextBox
+                    x:Name="TxtNumb2"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{Binding Numb2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Content="Result"/>
+                <TextBox
+                    x:Name="TxtResult"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Foreground="{Binding ColorForeground}"
+                    Text="{Binding NumbResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+           </Grid>
+           <StackPanel Orientation="Horizontal">
+                <Button
+                    x:Name="BtnAdd"
+                    Content="Addition"
+                    Command="{Binding AdditionButtonCommand}"/>
+                <Button
+                    x:Name="BtnSub"
+                    Content="Subtraction"
+                    Command="{Binding SubtractionButtonCommand}"/>
+                <Button
+                    x:Name="BtnReset"
+                    Content="Reset"
+                    Command="{Binding ResetButtonCommand}"/>
+           </StackPanel>
+           <TextBlock 
+               x:Name="TxtErrorMessage"
+               Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
+               Text="{Binding Error, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+       </StackPanel>
+   
 </Window>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Wpf.Mvvm.Calculator.ViewModel;
 
 namespace Wpf.Mvvm.Calculator.View
 {
@@ -19,9 +20,12 @@ namespace Wpf.Mvvm.Calculator.View
     /// </summary>
     public partial class ViewCalculator : Window
     {
+        
+        
         public ViewCalculator()
         {
             InitializeComponent();
+         
         }
     }
 }

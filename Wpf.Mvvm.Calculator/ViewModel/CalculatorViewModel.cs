@@ -247,6 +247,7 @@ namespace Wpf.Mvvm.Calculator.ViewModel
              Numb1 = "0";
              Numb2 = "0";
              NumbResult = "0";
+             Error = string.Empty;
              ColorForeground = Brushes.Black;
          }
 
